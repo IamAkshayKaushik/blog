@@ -1,11 +1,45 @@
 {% extends 'blog/base.html' %}
+{% load static %}
+
+{% block meta %}
+    <meta name="description" content="CodewithPython is a python blog">
+{% endblock meta %}
 
 {% block content %}
 
-{% for post in object_list %}
+		<div class="container">
 
-<h2> {{ post.title }}</h2>
-<p> {{ post.description }} </p>
-{% endfor %}
+			<div class="row">
+                {% for post in object_list%}
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card h-100">
+                                    <div class="single-post post-style-1">
+                                        <a href="{{ post.get_absolute_url }}">
+                                            <div class="blog-image"><img src="{% static 'images/marion-michele-330691.jpg'%}" alt="Blog Image"></div>
+                                        </a>
+                                        <a class="avatar" href="#"><img src="{% static 'images/icons8-team-355979.jpg'%}" alt="Profile Image"></a>
 
-{% endblock %}
+                                        <div class="blog-info">
+
+                                            <h4 class="title"><a href="{{ post.get_absolute_url }}"><b>{{post.title}}</b></a></h4>
+
+                                            <ul class="post-footer">
+                                                <li><a href="#"><i class="ion-heart"></i>{{ post.likes }}</a></li>
+                                                <li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+                                                <li><a href="#"><i class="ion-eye"></i>138</a></li>
+                                            </ul>
+
+                                        </div><!-- blog-info -->
+                                    </div><!-- single-post -->
+                                </div><!-- card -->
+                            </div><!-- col-lg-4 col-md-6 -->
+                {% endfor %}
+
+			</div> 
+
+			<a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
+
+		</div><!-- container -->
+
+
+{% endblock content%}
