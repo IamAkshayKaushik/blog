@@ -6,18 +6,32 @@ from django.utils import timezone
 from django.utils.text import slugify
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
+    image = models.ImageField(default='default.jpg', upload_to='profile_pic')
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        db_table = 'Profile'
+
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200, null=True, blank=True)
     slug = models.SlugField(max_length=100, unique=True, null=True)
     author = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default='1', related_name='author_category')
 
-    def save(self, *args, **kwargs):
-        self.url = slugify(self.name)
-        super(Category, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.url = slugify(self.name)
+    #     super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return f"/{self.slug}/"
 
     class Meta:
         db_table = 'Category'
@@ -31,7 +45,7 @@ class Post(models.Model):
     title = models.CharField(max_length=75, null=False, blank=False)
     description = models.TextField()
     author = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default='1', related_name='author_posts')
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category, related_name='category_posts')
     slug = models.SlugField(max_length=100, unique=True)
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)

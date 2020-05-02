@@ -27,5 +27,5 @@ class Home(generic.ListView):
     #     return render(request, 'base.html', {'posts': posts})
 
     def get_queryset(self):
-        queryset = Post.objects.filter().all()
+        queryset = Post.objects.prefetch_related('author__user_profile').all()
         return queryset
