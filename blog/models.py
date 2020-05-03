@@ -4,6 +4,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
+from PIL import Image
 
 
 class Profile(models.Model):
@@ -12,6 +13,16 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def save(self, *args, **kwargs):
+        super().save()
+
+        img = Image.open(self.image.path)
+        if img.height > 500 and img.width > 500:
+            output_size = (500, 500)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
 
     class Meta:
         db_table = 'Profile'
