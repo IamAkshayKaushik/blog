@@ -23,9 +23,9 @@
 	<link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
 
 
-	<link href="{% static 'layout-1/css/styles.css' %}" rel="stylesheet">
+{% block header %}
+{% endblock header %}
 
-	<link href="{% static 'layout-1/css/responsive.css' %}" rel="stylesheet">
 
 </head>
 <body >
@@ -54,11 +54,11 @@
 	</header>
 
 
-	<section class="blog-area section">
+
 		{% block content %}
 	
 		{% endblock content %}
-	</section><!-- section -->
+
 
 
 	<footer>

@@ -23,9 +23,22 @@ posts = [{
 class Home(generic.ListView):
     model = Post
     template_name = 'blog/home.html'
+
     # def get(self, request):
     #     return render(request, 'base.html', {'posts': posts})
 
     def get_queryset(self):
         queryset = Post.objects.prefetch_related('author__user_profile').all()
         return queryset
+
+
+class PostDetailView(generic.DetailView):
+    # slug_field = 'slug'
+    # slug_url_kwarg = 'slug'
+    queryset = Post.objects.prefetch_related('author__user_profile').all()
+    model = Post
+    template_name = 'blog/single-post-1.html'
+
+
+
+
