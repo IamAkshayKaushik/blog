@@ -150,7 +150,7 @@
                         <div class="card h-100">
                             <div class="single-post post-style-1">
 
-                                <div class="blog-image"><img src="{{ related_post.feature_image.url }}" alt="Blog Image"></div>
+                                <div class="blog-image"><img src="{{ related_post.feature_image.url }}" alt="{{ related_post.title }}"></div>
 
                                 <a class="avatar" href="#"><img src="{{ related_post.author.user_profile.image.url }}" alt="{{ related_post.author.first_name }} Image"></a>
 
@@ -302,4 +302,3 @@
 {#		</div><!-- container -->#}
 {#	</section>#}
 {% endblock content %}
-

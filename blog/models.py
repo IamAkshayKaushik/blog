@@ -2,6 +2,7 @@ import random
 from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
+from django.db.models import Q
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
@@ -74,7 +75,8 @@ class Post(models.Model):
         return f"/{self.slug}/"
 
     def get_random_posts_by_category(self):
-        return Post.objects.select_related('author__user_profile').filter(category__in=self.category.all()).order_by('?')[:3]
+        qs = Post.objects.select_related('author__user_profile').filter(~Q(pk=self.pk), category__in=self.category.all())
+        return qs.order_by('?')[:3]
         # random_post = Post.objects.filter(category__in=self.category.all()).values_list('id',flat=True)
         # print(random_post)
         # random_ids = random.sample(list(random_post), 3)
