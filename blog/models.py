@@ -70,7 +70,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        # return reverse('blog:post_detail', kwargs={"slug": self.slug})
+        # return reverse('post', kwargs={"slug": self.slug})
         return f"/{self.slug}/"
 
     def get_random_posts_by_category(self):

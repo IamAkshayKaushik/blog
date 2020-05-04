@@ -23,6 +23,7 @@ posts = [{
 class Home(generic.ListView):
     model = Post
     template_name = 'blog/home.html'
+    paginate_by = 2
 
     # def get(self, request):
     #     return render(request, 'base.html', {'posts': posts})
