@@ -75,7 +75,8 @@ class Post(models.Model):
         return f"/{self.slug}/"
 
     def get_random_posts_by_category(self):
-        qs = Post.objects.select_related('author__user_profile').filter(~Q(pk=self.pk), category__in=self.category.all())
+        qs = Post.objects.select_related('author__user_profile').filter(~Q(pk=self.pk),
+                                                                        category__in=self.category.all())
         return qs.order_by('?')[:3]
         # random_post = Post.objects.filter(category__in=self.category.all()).values_list('id',flat=True)
         # print(random_post)

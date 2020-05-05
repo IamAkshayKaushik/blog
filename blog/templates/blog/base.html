@@ -31,18 +31,18 @@
 				<li><a href="#">Categories</a></li>
 				<li><a href="#">Features</a></li>
 			</ul><!-- main-menu -->
-
 			<div class="src-area">
-				<form>
+				<form method="GET" action="/">
 					<button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
-					<input class="src-input" type="text" placeholder="Type of search">
+					<input class="src-input" type="text" name="search" placeholder="Type of search" value='{{ request.GET.search }}'>
 				</form>
 			</div>
 
 		</div><!-- conatiner -->
 	</header>
 
-		{% block content %}{% endblock content %}
+		{% block content %}
+		{% endblock content %}
 
 	<footer>
 		<div class="container">

@@ -11,6 +11,16 @@
 
 {% block content %}
     <section class="blog-area section">
+                {% if messages %}
+                <ul class="messages col-lg-12 col-md-offset-12 ">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"  {% endif %}>
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                        {{ message }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 		<div class="container">
 			<div class="row">
                 {% for post in object_list %}

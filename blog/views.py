@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
@@ -7,10 +9,18 @@ from django.views import View
 
 
 class Home(generic.ListView):
-    queryset = Post.objects.select_related('author__user_profile').all()
     model = Post
     template_name = 'blog/home.html'
-    paginate_by = 2
+    paginate_by = 9
+
+    def get_queryset(self):
+        queryset = Post.objects.select_related('author__user_profile')
+        search = self.request.GET.get('search', '')
+        if len(search) > 0:
+            queryset = queryset.filter(Q(title__icontains=search)
+                                       | Q(description__icontains=search)).distinct()
+            messages.success(self.request, f'You search for {search}.', extra_tags='alert')
+        return queryset
 
 
 class PostDetailView(generic.DetailView):
