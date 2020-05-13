@@ -109,7 +109,7 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'init_command': 'SET innodb_strict_mode=1',
             'init_command': 'SET default_storage_engine=INNODB',
-        }
+        },
     }
 }
 
