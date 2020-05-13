@@ -5,7 +5,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 media/
-*/migrations
+**/migrations/
+blog/migrations/
 .idea/
 # User-specific files
 *.rsuser
