@@ -1,4 +1,6 @@
 import random
+
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
@@ -56,7 +58,8 @@ class Post(models.Model):
                         ('published', 'Published'),
                     )
     title = models.CharField(max_length=75, null=False, blank=False)
-    description = models.TextField()
+    meta_description = models.CharField(max_length=150, null=True, blank=True)
+    description = RichTextUploadingField()
     feature_image = models.ImageField(upload_to='post/feature_image', default='default.jpg')
     author = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default='1', related_name='author_posts')
     category = models.ManyToManyField(Category, related_name='category_posts')

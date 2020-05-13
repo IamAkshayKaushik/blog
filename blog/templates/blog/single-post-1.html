@@ -42,7 +42,7 @@
 							<p class="para">
                                 {{ post.description | safe }}
                             </p>
-                            <div class="post-image"><img src="{{ post.feature_image.url }}" alt="Blog Image"></div>
+{#                            <div class="post-image"><img src="{{ post.feature_image.url }}" alt="Blog Image"></div>#}
 {#							<div class="post-image"><img src="images/blog-1-1000x600.jpg" alt="Blog Image"></div>#}
 {##}
 {#							<p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et#}
@@ -302,3 +302,9 @@
 {#		</div><!-- container -->#}
 {#	</section>#}
 {% endblock content %}
+
+{% block footercontent %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.2/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock footercontent %}

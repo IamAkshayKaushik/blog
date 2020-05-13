@@ -6,7 +6,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 media/
 */migrations
-
+.idea/
 # User-specific files
 *.rsuser
 *.suo
@@ -314,9 +314,9 @@ paket-files/
 .cr/personal
 
 # Python Tools for Visual Studio (PTVS)
-*/__pycache__/
+**/__pycache__/
 *.pyc
-
+db.sqlite3
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config

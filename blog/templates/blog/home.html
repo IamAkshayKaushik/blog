@@ -28,7 +28,7 @@
                         <div class="card h-100">
                             <div class="single-post post-style-1">
                                 <a href="{{ post.get_absolute_url }}">
-                                    <div class="blog-image"><img src="{% static 'images/marion-michele-330691.jpg'%}" alt="Blog Image"></div>
+                                    <div class="blog-image"><img src="{{ post.feature_image.url }}" alt="Blog Image"></div>
                                 </a>
                                 <a class="avatar" href="#"><img src="{{ post.author.user_profile.image.url }}" alt="Profile Image"></a>
 
