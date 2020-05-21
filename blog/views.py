@@ -18,7 +18,7 @@ class Home(generic.ListView):
         search = self.request.GET.get('search', '')
         if len(search) > 0:
             queryset = queryset.filter(Q(title__icontains=search)
-                                       | Q(description__icontains=search)).distinct('pk')
+                                       | Q(description__icontains=search))
             messages.success(self.request, f'You search for {search}.', extra_tags='alert')
         return queryset
 
