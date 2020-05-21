@@ -18,7 +18,7 @@ class Home(generic.ListView):
         search = self.request.GET.get('search', '')
         if len(search) > 0:
             queryset = queryset.filter(Q(title__icontains=search)
-                                       | Q(description__icontains=search)).distinct()
+                                       | Q(description__icontains=search)).distinct('pk')
             messages.success(self.request, f'You search for {search}.', extra_tags='alert')
         return queryset
 
@@ -26,7 +26,7 @@ class Home(generic.ListView):
 class PostDetailView(generic.DetailView):
     # slug_field = 'slug'
     # slug_url_kwarg = 'slug'
-    queryset = Post.objects.select_related('author__user_profile').all()
+    queryset = Post.objects.select_related('author__user_profile')
     model = Post
     template_name = 'blog/single-post-1.html'
 
