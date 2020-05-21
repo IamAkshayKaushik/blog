@@ -14,7 +14,8 @@ class Home(generic.ListView):
     paginate_by = 9
 
     def get_queryset(self):
-        queryset = Post.objects.select_related('author__user_profile')
+        queryset = Post.objects.select_related('author__user_profile').only('feature_image', 'title', 'slug', 'likes',
+                                                                            'author__user_profile__image')
         search = self.request.GET.get('search', '')
         if len(search) > 0:
             queryset = queryset.filter(Q(title__icontains=search)
@@ -26,10 +27,10 @@ class Home(generic.ListView):
 class PostDetailView(generic.DetailView):
     # slug_field = 'slug'
     # slug_url_kwarg = 'slug'
-    queryset = Post.objects.select_related('author__user_profile')
+    queryset = Post.objects.select_related('author__user_profile').only('feature_image', 'title', 'description', 'slug',
+                                                                        'likes', 'author__last_name',
+                                                                        'author__first_name',
+                                                                        'author__user_profile__image', 'author_id',
+                                                                        'publish')
     model = Post
     template_name = 'blog/single-post-1.html'
-
-
-
-

@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'i*yv_yo=(kxtc7#0f2s-+f^iv&0y8okbb4ic6v+bgc^mk8pd1f'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -43,17 +41,18 @@ INSTALLED_APPS = [
     'debug_toolbar',
 ]
 
-CKEDITOR_CONFIGS = { 'default':
-                         { 'toolbar': 'Custom', 'height': 500, 'toolbar_Custom':
-                             [
-                                 ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo', 'Redo'],
-                                 ['Link', 'Unlink', 'Anchor'],
-                                 ['Image', 'Flash', 'Table', 'HorizontalRule'],
-                                 ['TextColor', 'BGColor'],
-                                 ['Smiley', 'SpecialChar'],
-                                 ['Source'], ['CodeSnippet'],
-                             ],'extraPlugins': 'codesnippet',
-                           },
+CKEDITOR_CONFIGS = {'default':
+                        {'toolbar': 'Custom', 'height': 500, 'toolbar_Custom':
+                            [
+                                ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', 'SpellChecker', 'Undo',
+                                 'Redo'],
+                                ['Link', 'Unlink', 'Anchor'],
+                                ['Image', 'Flash', 'Table', 'HorizontalRule'],
+                                ['TextColor', 'BGColor'],
+                                ['Smiley', 'SpecialChar'],
+                                ['Source'], ['CodeSnippet'],
+                            ], 'extraPlugins': 'codesnippet',
+                         },
                     }
 
 MIDDLEWARE = [
@@ -87,7 +86,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'codewithpython.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -132,7 +130,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -148,15 +145,13 @@ USE_TZ = True
 
 INTERNAL_IPS = ('127.0.0.1',)
 
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'blog', 'static', 'blog'),
+    os.path.join(BASE_DIR, 'blog', 'static', 'blog'),
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
