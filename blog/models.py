@@ -4,7 +4,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
-from django.db.models import Q, Subquery, OuterRef
+from django.db.models import Q, Subquery, OuterRef, Prefetch
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
@@ -81,7 +81,7 @@ class Post(models.Model):
         qs = Post.objects.select_related('author__user_profile').only('feature_image', 'title', 'slug', 'likes',
                                                                       'author__user_profile__image', 'author_id',
                                                                       'author__first_name', 'category')
-        qs = qs.filter(~Q(pk=self.pk), category__in=Subquery(self.category.all().values_list('pk')))
+        qs = qs.filter(~Q(pk=self.pk), category__in=Subquery(self.category.values_list('pk', flat=True)))
         return qs.order_by('?')[:3]
         # random_post = Post.objects.filter(category__in=self.category.all()).values_list('id',flat=True)
         # print(random_post)
