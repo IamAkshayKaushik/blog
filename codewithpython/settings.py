@@ -10,6 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+"""
+https://openlitespeed.org/kb/python-wsgi-applications/#HowtoverifyDjango
+
+https://www.litespeedtech.com/support/wiki/doku.php/litespeed_wiki:other-ext-apps:python-lsapi
+"""
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
